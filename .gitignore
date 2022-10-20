@@ -12,5 +12,5 @@
 # Log files
 /apps/jellyfin/log
 /apps/jackett/log.txt
-/apss/radarr/logs
+/apps/radarr/logs
 /apps/radarr/logs.db
