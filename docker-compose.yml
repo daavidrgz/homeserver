@@ -1,0 +1,66 @@
+version: "3.7"
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:latest
+    container_name: jellyfin
+    volumes:
+      - ./apps/jellyfin:/config
+      - ./media:/media
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    ports:
+      - 8096:8096
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+
+  radarr:
+    image: linuxserver/radarr:latest
+    container_name: radarr
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./apps/radarr:/config
+      - ./media:/media
+      - ./torrents:/torrents
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    ports:
+      - 7878:7878
+
+  jackett:
+    image: linuxserver/jackett:latest
+    container_name: jackett
+    volumes:
+      - ./apps/jackett:/config/Jackett
+      - ./torrents:/media/torrents
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - AUTO_UPDATE=true
+    ports:
+      - 9117:9117
+
+  transmission:
+    image: linuxserver/transmission:latest
+    container_name: transmission
+    volumes:
+      - ./apps/transmission:/config
+      - ./torrents:/downloads
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - TRANSMISSION_WEB_HOME=/transmission-web-control
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp

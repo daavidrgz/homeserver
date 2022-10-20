@@ -1,0 +1,16 @@
+/media
+/torrents
+
+# Jellyfin data
+/apps/jellyfin/data/transcodes
+/apps/jellyfin/cache
+/apps/jellyfin/data/metadata
+
+# Radarr media
+/apps/radarr/MediaCover
+
+# Log files
+/apps/jellyfin/log
+/apps/jackett/log.txt
+/apss/radarr/logs
+/apps/radarr/logs.db

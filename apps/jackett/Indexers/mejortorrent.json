@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sitelink",
+    "type": "inputstring",
+    "name": "Site Link",
+    "value": "https://mejortorrent.wtf/"
+  },
+  {
+    "id": "cookieheader",
+    "type": "hiddendata",
+    "name": "CookieHeader",
+    "value": "XSRF-TOKEN=eyJpdiI6IlB4dFRXN0xuTGtTWjNYYVFUOGp2MWc9PSIsInZhbHVlIjoiMUNwT3NaYWthZG8vS3lKVFdHbGNqYzdJdEJXWkVxNW53ai9NV3c3YllZZkpHSXlUNVFkZEx5RERsSkdaRlZjYWFtcGRLS25LSm44SmNaWXp2YVlCbmFqZzc0TVVFZFA3WmZBdmtBZEpWUUZXaVVMd3BSNDBYcFBPSldPWVFWQ1QiLCJtYWMiOiI5MDM3NGQxMzhmNTJhMzlkYjQzYzc4ZTg0OWUxZDRjYjY0NGVkMGY4YTcxZTc0YzBjMWIyZDMyNGQ5YjVmMTFhIiwidGFnIjoiIn0%3D; torrent_session=eyJpdiI6InJVSDVUUVlJRnJCdWFsZnlqOHhxdkE9PSIsInZhbHVlIjoicjdEVnZuOGV3ZWZMRlM1NWdxcm5mL2Q5SlJFaitxS1kzd003VklJL3J4Y0s5Z3dPWmNMdDNqcDdnbGc0UUVVM1VQci8zajc2SitJTmpqQUtYSGhZVlI5T0QzRDBpSlJSdTM1N0V1amdwa2xlY1dRaVBaYXhONUFpMXFlb24xeEciLCJtYWMiOiIwMDRlNDRlNGU1NWI4NGRjNjU1ZTgwODRlMDA1NTM3ZjY0YTZkYWY4ZTZhODllMzMyYTZmYjc3ZmZiMWZlYWQzIiwidGFnIjoiIn0%3D"
+  },
+  {
+    "id": "lasterror",
+    "type": "hiddendata",
+    "name": "LastError",
+    "value": null
+  },
+  {
+    "id": "matchwordsintitle",
+    "type": "inputbool",
+    "name": "Match words in title",
+    "value": true
+  },
+  {
+    "id": "tags",
+    "type": "inputtags",
+    "name": "Tags",
+    "value": ""
+  }
+]
