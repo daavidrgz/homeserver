@@ -11,7 +11,7 @@
   <HardwareAccelerationType>nvenc</HardwareAccelerationType>
   <EncoderAppPathDisplay>/usr/lib/jellyfin-ffmpeg/ffmpeg</EncoderAppPathDisplay>
   <VaapiDevice>/dev/dri/renderD128</VaapiDevice>
-  <EnableTonemapping>true</EnableTonemapping>
+  <EnableTonemapping>false</EnableTonemapping>
   <EnableVppTonemapping>false</EnableVppTonemapping>
   <TonemappingAlgorithm>bt2390</TonemappingAlgorithm>
   <TonemappingRange>auto</TonemappingRange>
