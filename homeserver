@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Colors
+R="\e[0;31m"
+G="\e[0;32m"
+Y="\e[0;33m"
+B="\e[0;34m"
+M="\e[0;35m"
+C="\e[0;36m"
+W="\e[0m"
+
+HOMESERVER_DIR="$HOME/homeserver"
+
+function start() {
+	onedrive mount
+	echo -e "$B[+] Starting homeserver...$W"
+	cd $HOMESERVER_DIR
+	docker compose up -d
+}
+
+function stop() {
+	echo -e "$B[+] Stopping homeserver...$W"
+	cd $HOMESERVER_DIR
+	docker compose down
+	onedrive umount
+}
+
+function restart() {
+	echo -e "$B[+] Restarting homeserver...$W"
+	cd $HOMESERVER_DIR
+	docker compose restart
+}
+
+function help() {
+	echo -e "${Y}Usage:${W} homeserver [options]"
+	echo -e "${Y}Options:${W}"
+	echo -e "  ${G}start, -s${W}   Start homeserver"
+	echo -e "  ${G}stop, -t${W}    Stop homeserver"
+	echo -e "  ${G}restart, -r${W} Restart homeserver"
+	echo -e "  ${G}help, -h${W}    Show this help"
+}
+
+case $1 in
+"help" | "-h") help ;;
+"start" | "-s") start ;;
+"stop" | "-t") stop ;;
+"restart" | "-r") restart ;;
+*) help ;;
+esac

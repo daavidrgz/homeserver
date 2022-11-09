@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Colors
+R="\e[0;31m"
+G="\e[0;32m"
+Y="\e[0;33m"
+B="\e[0;34m"
+M="\e[0;35m"
+C="\e[0;36m"
+W="\e[0m"
+
+ONEDRIVE_FOLDERS=("/music/songs" "/movies" "/images/smartphone")
+LOCAL_FOLDERS=("$HOME/homeserver/media/music" "$HOME/homeserver/media/movies" "$HOME/homeserver/media/photos")
+
+function mount() {
+	for ((i = 0; i < ${#ONEDRIVE_FOLDERS[@]}; i++)); do
+		echo -e "${B}=>${W} Mounting ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} to ${B}${LOCAL_FOLDERS[$i]}${W}"
+		rclone mount OneDrive:${ONEDRIVE_FOLDERS[$i]} ${LOCAL_FOLDERS[$i]} --allow-other --daemon &&
+			echo -e "${G}[+]${W} ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} mounted" ||
+			echo -e "${R}[-] Error${W} while mounting OneDrive:${ONEDRIVE_FOLDERS[$i]}"
+		echo
+	done
+}
+
+function umount() {
+	for ((i = 0; i < ${#ONEDRIVE_FOLDERS[@]}; i++)); do
+		echo -e "${B}=>${W} Unmounting ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} to ${B}${LOCAL_FOLDERS[$i]}${W}"
+		fusermount -u ${LOCAL_FOLDERS[$i]} &&
+			echo -e "${G}[+]${W} ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} unmounted" ||
+			echo -e "${R}[-] Error${W} while unmounting OneDrive:${ONEDRIVE_FOLDERS[$i]}"
+		echo
+	done
+}
+
+function status() {
+	for ((i = 0; i < ${#ONEDRIVE_FOLDERS[@]}; i++)); do
+		fusermount -uz ${LOCAL_FOLDERS[$i]} &>/dev/null &&
+			echo -e "${G}[+]${W} ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} is mounted" ||
+			echo -e "${R}[-]${W} ${B}OneDrive:${ONEDRIVE_FOLDERS[$i]}${W} is not mounted"
+		echo
+	done
+}
+
+function help() {
+	echo -e "${Y}Usage:${W} onedrive [options]"
+	echo -e "${Y}Options:${W}"
+	echo -e "  ${G}mount, m, -m${W}   Mount OneDrive"
+	echo -e "  ${G}umount, u, -u${W}  Unmount OneDrive"
+	echo -e "  ${G}status, s, -s${W}  Status of OneDrive"
+	echo -e "  ${G}help, h, -h${W}    Show this help"
+}
+
+case "$1" in
+"help" | "h" | "-h") help ;;
+"mount" | "m" | "-m") mount ;;
+"umount" | "u" | "-u") umount ;;
+"status" | "s" | "-s") status ;;
+*) help ;;
+esac
