@@ -11,7 +11,15 @@ W="\e[0m"
 
 HOMESERVER_DIR="$HOME/homeserver"
 
+function create_dirs() {
+	mkdir "$HOMESERVER_DIR/torrents" &>/dev/null
+	mkdir -p "$HOMESERVER_DIR/media/music" &>/dev/null
+	mkdir "$HOMESERVER_DIR/media/movies" &>/dev/null
+	mkdir "$HOMESERVER_DIR/media/photos" &>/dev/null
+}
+
 function start() {
+	create_dirs
 	onedrive mount
 	echo -e "$B[+] Starting homeserver...$W"
 	cd $HOMESERVER_DIR
